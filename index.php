@@ -22,10 +22,12 @@
             <label class="label">Coloque o seu Peso:</label>
             <input type="text"  name="peso" class="input"/><br>
 
-            <input type="submit" placeholder="salvar" value="salvar" />
-            <input type="submit" placeholder="delete" value="deletar"/>
-            <input type="submit" placeholder="renomear" value="renomear"/>
-            <input type="submit" placeholder="consultar" value="consultar"/>
+            <div class="posiButtons">
+            <input type="submit" value="Salvar" class="buttons" />
+            <input type="submit" value="Deletar" class="buttons"/>
+            <input type="submit" value="Renomear" class="buttons"/>
+            <input type="submit" value="Consultar" class="buttons"/>
+            </div>
         </form>
     </div>
 

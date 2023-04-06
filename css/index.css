@@ -1,4 +1,5 @@
 .wrapper{
+    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,6 +9,7 @@
 }
 
 .posiForm{
+    
     width: 35vw;
     height: 35vh;
     background-color: rgb(230, 221, 103);
@@ -29,6 +31,12 @@
     height: 2vh;
 }
 
-#button{
-    
+#posiButtons{
+    display: flex;
+}
+
+.buttons{
+    width: 6vw;
+    height: 3vh;
+    margin: 1rem;
 }
