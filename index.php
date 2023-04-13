@@ -32,14 +32,14 @@
 
                 <div class="posiButtons">
                     <input type="submit" value="Salvar"  class="buttonS" /> 
-                    <input type="submit" value="Deletar" class="buttonD">
-                    <input type="submit" value="Renomear" class="buttonR"/>
+                    <input type="submit" value="Deletar" class="buttonD" onclick="location.href='deletar.php';" />
+                    <input type="submit" value="Renomear" class="buttonR" onclick="location.href='alterar.php';"/>
                     <input type="button" value="Consultar" class="buttonC" onclick="location.href='consultar.php';"/> 
                 </div>
             </form>
         </div>
             <?php
-            require("php.php");
+            require("salvar.php");
             ?>
     </div>
 </body>
