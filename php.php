@@ -1,13 +1,12 @@
     <?php
     if (isset($_POST['nome'])){
         $nome = $_POST['nome'];
-        $idade = date('Y') -$_POST['nascimento'];
+        $idade = date('Y') - $_POST['nascimento'];
         $altura = $_POST['altura'];
         $peso = $_POST['peso'];
         $imc = $peso /($altura * $altura );
         $classImc;
         
-
         if($imc>40)
         {$classImc = "Obesidade Grave";}
         elseif($imc >= 30 && $imc < 40 ){
@@ -39,17 +38,16 @@
     }
 
 
-
-    $sql="CREATE TABLE IF NOT EXISTS cadastros(
-        nome varchar(50) not null primary key,
-        nascimento date,
+    $sql="CREATE TABLE IF NOT Exists cadastros(
+        id int(6) auto_increment primary key,
+        nome varchar(50) not null,
+        nascimento int(3),
         altura double,
         peso double
-        imc double
     )";
-    
+
     $conexao = novaConexao();
-    
+
     $resultado = $conexao->query($sql);
 
     if($resultado){
@@ -60,42 +58,26 @@
 
 
 
-    
-    $sql="INSERT INTO cadastros (nome, nascimento, altura, peso, imc) 
-    VALUES    
-    (?,?,?,?,?)";
+    $erros = [];
+    $dados = $_POST;
+         
+         $sql="INSERT INTO cadastros (nome, nascimento, altura, peso) values (?, ?, ?, ?)";
 
-    $conexao = novaConexao();
-    
-    $resultado = $conexao->query($sql);
+         $insert = $conexao->prepare($sql);
 
-    if($resultado){
-        echo "Dados INSERIDOS com SUCESSO :)";
-    }else{
-        echo ":( Erro: ".$conexao->error;
-    }
-
-
-    $sql = "SELECT * FROM cadastros";
-
-    $conexao = novaConexao();
-
-    $resultado = $conexao->query($sql);
-
-    $registros = [];
-    date('d/m/Y',strtotime($registro['nascimento']));
-
-    if ($resultado->num_rows > 0) { 
-        while ($row = $resultado->fetch_assoc()) {
-            $registros[] = $row; 
-        }
-    } else if ($conexao->error) {
-        echo ":( Erro: " . $conexao->error;
-    }
-
-    echo "<b>Valores do ARRAY Associado!!!</b><br><br>";
-    
-    print_r($registros);
-    
-    $conexao->close();
-    ?>
+         $params = [
+             $dados['nome'],
+             $dados['nascimento'],
+             $dados['altura'],
+             $dados['peso'],
+            
+         ];
+         
+         $insert->bind_param("sidd", ...$params);
+         
+         if ($insert->execute()){
+             unset($dados); 
+         }
+   
+ 
+ ?>

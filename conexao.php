@@ -1,7 +1,7 @@
 <?php
 
 function novaConexao($banco='crud_imc'){
-    $servidor="127.0.0.1:3306";
+    $servidor="127.0.0.1:3307";
     $usuario="root"; 
     $senha=""; 
 

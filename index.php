@@ -21,8 +21,8 @@
                 <label class="label">Coloque o seu nome:</label>
                 <input type="text" name="nome" class="input" /><br>
 
-                <label class="label">Coloque a sua Data de Nascimento:</label>
-                <input type="date" name="nascimento" class="input" /><br>
+                <label class="label">Coloque a seu Ano de Nascimento:</label>
+                <input type="text" name="nascimento" class="input" /><br>
 
                 <label class="label">Coloque a sua altura:</label>
                 <input type="number" name="altura" class="input" /><br>
@@ -31,10 +31,10 @@
                 <input type="number" name="peso" class="input" /><br>
 
                 <div class="posiButtons">
-                    <input type="submit" value="Salvar"  class="buttonS"/>
+                    <input type="submit" value="Salvar"  class="buttonS" /> 
                     <input type="submit" value="Deletar" class="buttonD">
                     <input type="submit" value="Renomear" class="buttonR"/>
-                    <input type="submit" value="Consultar" class="buttonC"/>
+                    <input type="button" value="Consultar" class="buttonC" onclick="location.href='consultar.php';"/> 
                 </div>
             </form>
         </div>
