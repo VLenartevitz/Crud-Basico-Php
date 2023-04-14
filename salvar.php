@@ -1,4 +1,4 @@
-    <?php
+    <!-- <?php
     if (isset($_POST['nome'])){
         $nome = $_POST['nome'];
         $idade = date('Y') - $_POST['nascimento'];
@@ -77,7 +77,28 @@
          
          if ($insert->execute()){
              unset($dados); 
+
+
          }
+
+         $sql = "SELECT * FROM cadastros";
+      
+        $resultado = $conexao->query($sql);
+
+        $registros = [];
+
+        if ($resultado->num_rows > 0) { 
+            while ($row = $resultado->fetch_assoc()) {
+                $registros[] = $row; 
+            }
+        } else if ($conexao->error) {
+            echo ":( Erro: " . $conexao->error;
+        }
+
+        print_r($registros);
+
+        $conexao->close();
+
    
  
- ?>
+ ?> -->
