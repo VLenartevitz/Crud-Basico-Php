@@ -7,6 +7,36 @@
     <title>Consultar</title>
 </head>
 <body>
+<?php 
+    require_once("conexao.php");
+
+    $conexao = novaConexao();
+
+    if (isset($_GET['excluir'])){     
+        
+        $excluirSQL = "DELETE FROM cadastros WHERE id = ?";
+        $stmt = $conexao->prepare($excluirSQL);
+        $stmt->bind_param("i", $_GET['excluir']);  
+        $stmt->execute(); 
+    }
+
+    $sql = "SELECT * FROM cadastros";
+
+    $resultado = $conexao->query($sql);
+
+    $registros = [];
+
+    if ($resultado->num_rows > 0) { 
+        while ($row = $resultado->fetch_assoc()) {
+            $registros[] = $row; 
+        }
+    } else if ($conexao->error) {
+        echo ":( Erro: " . $conexao->error;
+    }
+    
+    $conexao->close();
+
+?>
 <table border="4">
         <thead>
             <th>ID</th>
@@ -14,8 +44,8 @@
             <th>Nascimento</th>
             <th>Altura</th>
             <th>Peso</th>
-            <th>Imc</th>
-            <th>Classe do Imc</th>
+            <!-- <th>Imc</th>
+            <th>Classe do Imc</th> -->
         </thead>
 
         <tbody>
@@ -30,37 +60,19 @@
                 </td>
                 <td><?=$registro['altura']?></td>
                 <td><?=$registro['peso']?></td>
-                <td><?=$registro['Imc']?></td>
-                <td><?=$registro['Classe do Imc']?></td>
+                <td>
+                <a href="consultar.php?excluir=<?= $registro['id'] ?>"> Excluir </a>
+                </td>
+                <td>
+                    <a href="alterar.php">Alterar </a>
+                </td>
+                <!-- <td><?=$registro['Imc']?></td>
+                <td><?=$registro['Classe do Imc']?></td> -->
                 </tr>
             <?php endforeach ?>
         </tbody>
     </table>
-    <?php 
-    require_once("conexao.php");
-
-    $sql = "SELECT * FROM cadastros";
-
-    $conexao = novaConexao();
-
-    $resultado = $conexao->query($sql);
-
-    $registros = [];
-
-    if ($resultado->num_rows > 0) { 
-        while ($row = $resultado->fetch_assoc()) {
-            $registros[] = $row; 
-        }
-    } else if ($conexao->error) {
-        echo ":( Erro: " . $conexao->error;
-    }
-
-    echo "<b>Valores do ARRAY Associado!!!</b><br><br>";
     
-    print_r($registros);
-
-    $conexao->close();
-?>
 </body>
 </html>
 
