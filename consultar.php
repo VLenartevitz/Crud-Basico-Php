@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="css/index.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consultar</title>
 </head>
@@ -64,15 +65,14 @@
                 <a href="consultar.php?excluir=<?= $registro['id'] ?>"> Excluir </a>
                 </td>
                 <td>
-                    <a href="alterar.php">Alterar </a>
-                </td>
+                <a href="alterar.php?codigo=<?= $registro['id'] ?>">Alterar </a>                </td>
                 <!-- <td><?=$registro['Imc']?></td>
                 <td><?=$registro['Classe do Imc']?></td> -->
                 </tr>
             <?php endforeach ?>
         </tbody>
     </table>
-    
+    <button onclick="location.href='index.php';" class="buttonD" name="Voltar"></button>
 </body>
 </html>
 
