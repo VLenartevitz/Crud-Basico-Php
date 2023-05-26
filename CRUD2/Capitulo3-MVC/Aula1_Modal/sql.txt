@@ -1,0 +1,8 @@
+create database crud_modal_fatec;
+use crud_modal_fatec;
+
+create table pessoas(
+id int auto_increment primary key,
+nome varchar(10),
+email varchar(100)
+);
